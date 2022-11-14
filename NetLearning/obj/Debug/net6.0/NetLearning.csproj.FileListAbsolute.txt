@@ -1,0 +1,15 @@
+C:\Users\amine\RiderProjects\NetLearning\NetLearning\bin\Debug\net6.0\NetLearning.exe
+C:\Users\amine\RiderProjects\NetLearning\NetLearning\bin\Debug\net6.0\NetLearning.deps.json
+C:\Users\amine\RiderProjects\NetLearning\NetLearning\bin\Debug\net6.0\NetLearning.runtimeconfig.json
+C:\Users\amine\RiderProjects\NetLearning\NetLearning\bin\Debug\net6.0\NetLearning.dll
+C:\Users\amine\RiderProjects\NetLearning\NetLearning\bin\Debug\net6.0\NetLearning.pdb
+C:\Users\amine\RiderProjects\NetLearning\NetLearning\obj\Debug\net6.0\NetLearning.csproj.AssemblyReference.cache
+C:\Users\amine\RiderProjects\NetLearning\NetLearning\obj\Debug\net6.0\NetLearning.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\amine\RiderProjects\NetLearning\NetLearning\obj\Debug\net6.0\NetLearning.AssemblyInfoInputs.cache
+C:\Users\amine\RiderProjects\NetLearning\NetLearning\obj\Debug\net6.0\NetLearning.AssemblyInfo.cs
+C:\Users\amine\RiderProjects\NetLearning\NetLearning\obj\Debug\net6.0\NetLearning.csproj.CoreCompileInputs.cache
+C:\Users\amine\RiderProjects\NetLearning\NetLearning\obj\Debug\net6.0\NetLearning.dll
+C:\Users\amine\RiderProjects\NetLearning\NetLearning\obj\Debug\net6.0\refint\NetLearning.dll
+C:\Users\amine\RiderProjects\NetLearning\NetLearning\obj\Debug\net6.0\NetLearning.pdb
+C:\Users\amine\RiderProjects\NetLearning\NetLearning\obj\Debug\net6.0\NetLearning.genruntimeconfig.cache
+C:\Users\amine\RiderProjects\NetLearning\NetLearning\obj\Debug\net6.0\ref\NetLearning.dll
