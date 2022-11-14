@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Net;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using MeetApi.Models;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace MeetApi.Controllers
 {
@@ -39,20 +41,15 @@ namespace MeetApi.Controllers
                 }
                 else
                 {
-                    foreach (var error in result.Errors)
-                    {
-                        ModelState.AddModelError(string.Empty, error.Description);
-                    }
-
-                    return Content("XX");
+                    return BadRequest(result.Errors);
                 }
             }
             else
             {
-                return Json(ModelState.Root);
+                return BadRequest(ModelState);
             }
 
-            return Content("sda");
+            return Ok("Аккаунт зарегестрирован");
         }
 
         [Route("Login")]
@@ -73,11 +70,11 @@ namespace MeetApi.Controllers
                 if (!result.Succeeded)
                 {
                     ModelState.AddModelError("", "Неправильный логин и (или) пароль");
-                    return Content("Неправильный логин и (или) пароль");
+                    return Unauthorized("Неправильный логин или пароль");
                 }
             }
 
-            return Ok();
+            return Ok("Авторизация прошла успешно");
         }
 
         [Route("Logout")]
@@ -86,7 +83,7 @@ namespace MeetApi.Controllers
         {
             // удаляем аутентификационные куки
             await _signInManager.SignOutAsync();
-            return Json(User.Identity.Name);
+            return Ok("Выход из аккаунта успешен");
         }
     }
 }
