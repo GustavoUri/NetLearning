@@ -1,8 +1,7 @@
-﻿using System.Net;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using MeetApi.Models;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MeetApi.Controllers
 {
@@ -19,12 +18,6 @@ namespace MeetApi.Controllers
             _signInManager = signInManager;
         }
 
-        [Route("Register")]
-        [HttpGet]
-        public Task<IActionResult> Register()
-        {
-            return Task.FromResult<IActionResult>(Json(new RegisterModel()));
-        }
 
         [Route("Register")]
         [HttpPost]
@@ -41,23 +34,17 @@ namespace MeetApi.Controllers
                 }
                 else
                 {
-                    return BadRequest(result.Errors);
+                    return BadRequest();
                 }
             }
             else
             {
-                return BadRequest(ModelState);
+                return BadRequest();
             }
 
-            return Ok("Аккаунт зарегестрирован");
+            return Ok();
         }
 
-        [Route("Login")]
-        [HttpGet]
-        public IActionResult Login()
-        {
-            return Json(new LoginModel());
-        }
 
         [Route("Login")]
         [HttpPost]
@@ -69,21 +56,34 @@ namespace MeetApi.Controllers
                     await _signInManager.PasswordSignInAsync(model.Login, model.Password, model.RememberMe, false);
                 if (!result.Succeeded)
                 {
-                    ModelState.AddModelError("", "Неправильный логин и (или) пароль");
-                    return Unauthorized("Неправильный логин или пароль");
+                    return BadRequest();
                 }
             }
+            else
+            {
+                return BadRequest();
+            }
 
-            return Ok("Авторизация прошла успешно");
+            return Ok();
         }
-
+        [Authorize]
         [Route("Logout")]
         [HttpPost]
         public async Task<IActionResult> Logout()
         {
-            // удаляем аутентификационные куки
             await _signInManager.SignOutAsync();
-            return Ok("Выход из аккаунта успешен");
+            return Ok();
+        }
+
+        [Authorize]
+        [Route("Profile")]
+        [HttpPost]
+        public async Task<IActionResult> AddProfileForm(ProfileFormModel form)
+        {
+            User user = await _userManager.FindByNameAsync(User.Identity.Name);
+            user.UpdateUser(form);
+            await _userManager.UpdateAsync(user);
+            return Ok();
         }
     }
 }
