@@ -10,17 +10,16 @@ public class User : IdentityUser
     public string? Gender { get; set; }
     public List<string>? Hobbies { get; set; }
     public string? Info { get; set; }
-
-    public string? PhotoName { get; set; }
+    public string? Photo { get; set; }
     // //public string chatsId { get; set; }
-    public void UpdateUser(ProfileFormModel form)
+    public void UpdateUser(ProfileFormModel formModel)
     {
-        this.Age = form.Age;
-        this.Gender = form.Gender;
-        this.Hobbies = form.Hobbies;
-        this.Info = form.Info;
-        this.Location = form.Location;
-        this.FullName = form.FullName;
-        this.PhotoName = form.PhotoName;
+        this.Age = formModel.Age;
+        this.Gender = formModel.Gender;
+        this.Hobbies = formModel.Hobbies;
+        this.Info = formModel.Info;
+        this.Location = formModel.Location;
+        this.FullName = formModel.FullName;
+        this.Photo = formModel.Photo;
     }
 }

@@ -14,6 +14,12 @@ namespace MeetApi.Models
             //Database.EnsureDeleted();
             Database.EnsureCreated();
         }
+        
+        public AppContext()
+        {
+            //Database.EnsureDeleted();
+            Database.EnsureCreated();
+        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

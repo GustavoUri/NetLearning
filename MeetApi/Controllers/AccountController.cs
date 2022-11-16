@@ -66,6 +66,7 @@ namespace MeetApi.Controllers
 
             return Ok();
         }
+
         [Authorize]
         [Route("Logout")]
         [HttpPost]
@@ -78,10 +79,10 @@ namespace MeetApi.Controllers
         [Authorize]
         [Route("Profile")]
         [HttpPost]
-        public async Task<IActionResult> AddProfileForm(ProfileFormModel form)
+        public async Task<IActionResult> AddProfileForm(ProfileFormModel formModel)
         {
-            User user = await _userManager.FindByNameAsync(User.Identity.Name);
-            user.UpdateUser(form);
+            User user = await _userManager.FindByNameAsync(User.Identity?.Name);
+            user.UpdateUser(formModel);
             await _userManager.UpdateAsync(user);
             return Ok();
         }
