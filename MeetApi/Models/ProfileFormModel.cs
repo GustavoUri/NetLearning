@@ -8,5 +8,5 @@ public class ProfileFormModel
     public string? Gender { get; set; }
     public List<string>? Hobbies { get; set; }
     public string? Info { get; set; }
-    public string? Photo { get; set; }
+    public IFormFile? Photo { get; set; }
 }

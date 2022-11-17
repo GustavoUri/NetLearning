@@ -24,7 +24,7 @@ public class RecommendedUserModel
         Location = user.Location;
         Hobbies = user.Hobbies;
         Info = user.Info;
-        Photo = user.Photo;
+        Photo = user.PhotoPath;
 
     }
 }

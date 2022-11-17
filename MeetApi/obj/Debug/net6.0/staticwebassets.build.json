@@ -1,11 +1,19 @@
 {
   "Version": 1,
-  "Hash": "L7bB0trwK9Run3Xn3zR8sV7UiL1D92IIE7mhyz88NkI=",
+  "Hash": "wUgq0iwUngqU6Nur6Rk34rwB6c+mNCypU1LoE9cxNa8=",
   "Source": "MeetApi",
   "BasePath": "_content/MeetApi",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "MeetApi\\wwwroot",
+      "Source": "MeetApi",
+      "ContentRoot": "C:\\Users\\amine\\RiderProjects\\NetLearning\\MeetApi\\wwwroot\\",
+      "BasePath": "_content/MeetApi",
+      "Pattern": "**"
+    }
+  ],
   "Assets": []
 }

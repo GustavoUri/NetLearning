@@ -11,7 +11,7 @@ namespace MeetApi.Controllers;
 public class InteractionsController : Controller
 {
     private readonly UserManager<User> _userManager;
-    private readonly AppContext _db; 
+    private readonly AppContext _db;
 
     public InteractionsController(UserManager<User> userManager, AppContext db)
     {

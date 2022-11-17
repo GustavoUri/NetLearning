@@ -13,9 +13,6 @@ public class RegisterModel
         [Required (ErrorMessage = "Не указан пароль")]
         [StringLength(25, MinimumLength = 5, ErrorMessage = "Длина строки пароля должна быть от 5 до 25 символов")]
         public string Password { get; set; }
- 
-        [Required(ErrorMessage = "Не указано подтверждение пароля")]
-        [Compare("Password", ErrorMessage = "Пароли не совпадают")]
-        public string PasswordConfirm { get; set; }
+        
     
 }

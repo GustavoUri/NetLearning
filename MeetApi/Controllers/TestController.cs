@@ -1,6 +1,9 @@
-﻿using MeetApi.Models;
+﻿using System.Net;
+using MeetApi.Models;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 
 namespace MeetApi.Controllers;
 
@@ -9,12 +12,11 @@ namespace MeetApi.Controllers;
 public class TestController : Controller
 {
     // GET
+    [Authorize]
     [HttpGet]
-    public async Task<IActionResult> AddProfileForm()
+    public async Task<IActionResult> AddProfileForm(HubConnectionContext connection)
     {
-        string path = $"Pictures/1116bedc-0bf6-4370-b422-6164ca8bc086";
-        var fileStream = new MemoryStream(System.IO.File.ReadAllBytes(path));
-        var file = new FormFile(fileStream, 0, fileStream.Length, "g", path);
-        return Json(file);
+        string info = connection.UserIdentifier;
+        return Json(info);
     }
 }

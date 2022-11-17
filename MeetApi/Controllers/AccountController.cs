@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using MeetApi.Models;
 using Microsoft.AspNetCore.Authorization;
+using AppContext = MeetApi.Models.AppContext;
 
 namespace MeetApi.Controllers
 {
@@ -11,11 +12,13 @@ namespace MeetApi.Controllers
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
+        private readonly AppContext _db;
 
-        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager)
+        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, AppContext db)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _db = db;
         }
 
 
@@ -86,5 +89,37 @@ namespace MeetApi.Controllers
             await _userManager.UpdateAsync(user);
             return Ok();
         }
+        
+        [Authorize]
+        [Route("ProfilePhoto")]
+        [HttpPost]
+        public async Task<IActionResult> AddProfilePhoto(IFormFile? photo)
+        {
+            if (photo != null)
+            {
+                User user = await _userManager.FindByNameAsync(User.Identity?.Name);
+                var type = photo.ContentType.Split("/")[1];
+                var path = $"Pictures/{user.Id}.{type}";
+                await using (var stream = new FileStream(path, FileMode.Create))
+                {
+                    await photo.CopyToAsync(stream);
+                }
+
+                user.PhotoPath = path;
+                await _userManager.UpdateAsync(user);
+            }
+
+            return Ok();
+            
+        }
+
+        // [Route("ProfilePhoto")]
+        // [HttpGet]
+        // public Task<IActionResult> GetProfilePhoto(string id)
+        // {
+        //     var user = _db.Users.First(x => x.Id == id);
+        //     var result = $"~/{user.PhotoPath}";
+        //     return Task.FromResult<IActionResult>(Content(result));
+        // }
     }
 }

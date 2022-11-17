@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Authorization; // для атрибута Authorize
-using System.Security.Claims;   // для ClaimTypes
+﻿using Microsoft.AspNetCore.Authorization; 
+using System.Security.Claims;
 using Microsoft.AspNetCore.SignalR;
  
-namespace MeetApi.Hubs
+namespace MeetApi.SignalRContext
 {
     [Authorize]
     public class ChatHub : Hub
