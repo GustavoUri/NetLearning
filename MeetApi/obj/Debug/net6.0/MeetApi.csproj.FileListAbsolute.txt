@@ -47,3 +47,4 @@ C:\Users\amine\RiderProjects\NetLearning\MeetApi\bin\Debug\net6.0\Microsoft.AspN
 C:\Users\amine\RiderProjects\NetLearning\MeetApi\bin\Debug\net6.0\Microsoft.Extensions.Identity.Core.dll
 C:\Users\amine\RiderProjects\NetLearning\MeetApi\bin\Debug\net6.0\Microsoft.Extensions.Identity.Stores.dll
 C:\Users\amine\RiderProjects\NetLearning\MeetApi\bin\Debug\net6.0\MeetApi.staticwebassets.runtime.json
+C:\Users\amine\RiderProjects\NetLearning\MeetApi\bin\Debug\net6.0\MeetApi.xml

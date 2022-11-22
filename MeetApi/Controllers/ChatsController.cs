@@ -1,0 +1,90 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity;
+using MeetApi.Models;
+using MeetApi.SignalRContext;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.SignalR;
+using Microsoft.EntityFrameworkCore;
+using AppContext = MeetApi.Models.AppContext;
+
+namespace MeetApi.Controllers;
+
+[ApiController]
+public class ChatsController : Controller
+{
+    private readonly UserManager<User> _userManager;
+    private readonly AppContext _db;
+
+    public ChatsController(UserManager<User> userManager, AppContext db)
+    {
+        _userManager = userManager;
+        _db = db;
+    }
+
+    [Authorize]
+    [HttpGet]
+    [Route("GetChats")]
+    public async Task<IActionResult> GetChats()
+    {
+        var result = new List<ChatInfo>();
+        var user = _db.Users.First(x => x.UserName == User.Identity.Name);
+        var chats = GetUserRawChats(user);
+
+        foreach (var chat in chats)
+        {
+            var otherUser = chat.Users.First(x => x.Id != user.Id);
+            var chatName = otherUser.FullName;
+            var chatPhoto = otherUser.PhotoPath;
+            result.Add(new ChatInfo() {Id = chat.Id, Name = chatName, PhotoPath = chatPhoto});
+        }
+
+
+        return Json(result);
+    }
+    [NonAction]
+    public List<Chat> GetUserRawChats(User user)
+    {
+        var chats = _db.Chats.Include(x => x.Users)
+            .Include(x => x.Messages).Where(x => x.Users.Contains(user)).ToList();
+
+        return chats;
+    }
+
+    [Authorize]
+    [HttpGet]
+    [Route("GetMessages")]
+    public async Task<IActionResult> GetChat(int chatId)
+    {
+        var user = await _userManager.FindByNameAsync(User.Identity.Name);
+        var chats = GetUserRawChats(user);
+        var result = new List<MessageToUser>();
+        var chat = chats.FirstOrDefault(x => x.Id == chatId);
+        if (chat != null)
+        {
+            foreach (var message in chat.Messages)
+            {
+                var mesToUser = new MessageToUser()
+                {
+                    SenderId = message.Sender.Id,
+                    SendingTime = message.SendingTime,
+                    Text = message.Text
+                };
+                result.Add(mesToUser);
+            }
+        }
+        return Json(result);
+    }
+
+    [Authorize]
+    [HttpPost]
+    [Route("BlockUser")]
+    public async Task<IActionResult> BlockUser(string userId)
+    {
+        var user = await _userManager.FindByNameAsync(User.Identity.Name);
+        var blockedUser = _db.Users.FirstOrDefault(x => x.Id == userId);
+        if (blockedUser != null)
+            user.BlockedUsersId.Add(userId);
+        await _userManager.UpdateAsync(user);
+        return Ok();
+    }
+}
