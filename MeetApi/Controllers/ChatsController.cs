@@ -35,12 +35,19 @@ public class ChatsController : Controller
             var otherUser = chat.Users.First(x => x.Id != user.Id);
             var chatName = otherUser.FullName;
             var chatPhoto = otherUser.PhotoPath;
-            result.Add(new ChatInfo() {Id = chat.Id, Name = chatName, PhotoPath = chatPhoto});
+            bool isBlocked = chat.Users.First(x => x.Id != user.Id).BlockedUsersId.Contains(user.Id);
+            result.Add(new ChatInfo()
+            {
+                Id = chat.Id, Name = chatName, PhotoPath = chatPhoto,
+                OtherUserId = chat.Users.First(x => x.Id != user.Id).Id,
+                IsBlocked = isBlocked
+            });
         }
 
 
         return Json(result);
     }
+
     [NonAction]
     public List<Chat> GetUserRawChats(User user)
     {
@@ -67,11 +74,13 @@ public class ChatsController : Controller
                 {
                     SenderId = message.Sender.Id,
                     SendingTime = message.SendingTime,
-                    Text = message.Text
+                    Text = message.Text,
+                    ChatId = chat.Id
                 };
                 result.Add(mesToUser);
             }
         }
+
         return Json(result);
     }
 
@@ -84,6 +93,21 @@ public class ChatsController : Controller
         var blockedUser = _db.Users.FirstOrDefault(x => x.Id == userId);
         if (blockedUser != null)
             user.BlockedUsersId.Add(userId);
+        await _userManager.UpdateAsync(user);
+        return Ok();
+    }
+
+    [Authorize]
+    [HttpPost]
+    [Route("UnBlockUser")]
+    public async Task<IActionResult> UnblockUser(string userId)
+    {
+        var user = await _userManager.FindByNameAsync(User.Identity.Name);
+        if (user.BlockedUsersId.Contains(userId))
+        {
+            user.BlockedUsersId.Remove(userId);
+        }
+
         await _userManager.UpdateAsync(user);
         return Ok();
     }

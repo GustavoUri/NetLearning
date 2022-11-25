@@ -9,4 +9,14 @@ public class ProfileForm
     public List<string>? Hobbies { get; set; }
     public string? Info { get; set; }
     //public IFormFile? Photo { get; set; }
+
+    public void UpdateForm(User user)
+    {
+        Age = user.Age;
+        FullName = user.FullName;
+        Location = user.Location;
+        Gender = user.Location;
+        Hobbies = user.Hobbies;
+        Info = user.Info;
+    }
 }

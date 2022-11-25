@@ -1,8 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
- 
 namespace MeetApi.Models
 {
-    public class UserLogin
+    public class UserLogin 
     {
         [Required]
         public string Login { get; set; }

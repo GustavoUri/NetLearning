@@ -9,6 +9,8 @@ namespace MeetApi.Models
 
         public DbSet<Message> Messages => Set<Message>();
         public DbSet<Chat> Chats => Set<Chat>();
+        public DbSet<City> Cities => Set<City>();
+        public DbSet<Hobby> Hobbies => Set<Hobby>();
         public AppContext(DbContextOptions<AppContext> options): base(options)
         {
             //Database.EnsureDeleted();

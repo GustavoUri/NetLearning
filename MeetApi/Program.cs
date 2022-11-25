@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.FileProviders;
 using AppContext = MeetApi.Models.AppContext;
-using System.Security.Claims;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -54,10 +53,5 @@ app.UseStaticFiles(new StaticFileOptions() // обрабатывает запр�
     RequestPath = new PathString("/Pictures")
 });
 app.MapHub<ChatHub>("/chat");
-app.Map("/", (ClaimsPrincipal x) =>
-{
-    var user = x.Identity.Name;
-    return user;
-});
 
 app.Run();
