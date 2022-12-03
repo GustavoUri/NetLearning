@@ -1,8 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MeetApi.Data;
+using MeetApi.Interfaces.Services;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using MeetApi.Models;
 using Microsoft.AspNetCore.Authorization;
-using AppContext = MeetApi.Models.AppContext;
 
 namespace MeetApi.Controllers
 {
@@ -14,13 +15,18 @@ namespace MeetApi.Controllers
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
-        private readonly AppContext _db;
-
-        public AuthorizationController(UserManager<User> userManager, SignInManager<User> signInManager, AppContext db)
+        private readonly AppDbContext _db;
+        private readonly IRegistrationService _registrationService;
+        private readonly IAuthentificationService _authentificationService;
+        public AuthorizationController(UserManager<User> userManager, 
+            SignInManager<User> signInManager, AppDbContext db, IRegistrationService registrationService, IAuthentificationService authentificationService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _db = db;
+            _registrationService = registrationService;
+            _authentificationService = authentificationService;
+
         }
 
         /// <summary>
@@ -34,17 +40,7 @@ namespace MeetApi.Controllers
         {
             if (ModelState.IsValid)
             {
-                User user = new User {UserName = model.Login};
-                var result = await _userManager.CreateAsync(user, model.Password);
-
-                if (result.Succeeded)
-                {
-                    await _signInManager.SignInAsync(user, false);
-                }
-                else
-                {
-                    return BadRequest();
-                }
+                await _registrationService.RegisterAsync(model);
             }
             else
             {
@@ -57,16 +53,11 @@ namespace MeetApi.Controllers
 
         [Route("login")]
         [HttpPost]
-        public async Task<IActionResult> LogInto(UserLogin model)
+        public async Task<IActionResult> LogInto(LoginToServer model)
         {
             if (ModelState.IsValid)
             {
-                var result =
-                    await _signInManager.PasswordSignInAsync(model.Login, model.Password, model.RememberMe, false);
-                if (!result.Succeeded)
-                {
-                    return BadRequest();
-                }
+                await _authentificationService.LoginAsync(model);
             }
             else
             {

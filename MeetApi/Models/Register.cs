@@ -2,7 +2,7 @@
 
 namespace MeetApi.Models;
 
-public class Register
+public class Register 
 {
     
         [Required (ErrorMessage = "Не указан логин")] 

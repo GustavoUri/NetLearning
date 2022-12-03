@@ -1,10 +1,8 @@
 ﻿
-using System.Net;
-using Microsoft.AspNetCore.Mvc;
 
 namespace MeetApi.Models;
 
-public class UserForSearch
+public class UserToClient 
 {
     public string? Id { get; set; }
     public string? FullName { get; set; }
@@ -13,18 +11,14 @@ public class UserForSearch
     public string? Location { get; set; }
     public List<string>? Hobbies { get; set; }
     public string? Info { get; set; }
-    public string? Photo { get; set; }
 
-    public UserForSearch(User user)
+    public UserToClient(User user)
     {
         Id = user.Id;
         FullName = user.FullName;
         Gender = user.Gender;
         Age = user.Age;
-        Location = user.Location;
-        Hobbies = user.Hobbies;
-        Info = user.Info;
-        Photo = user.PhotoPath;
-
+        Location = user.Location.name;
+        Hobbies = user.Hobbies.Select(hobby => hobby.Name).ToList();
     }
 }

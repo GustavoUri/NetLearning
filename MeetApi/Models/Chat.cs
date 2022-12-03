@@ -2,7 +2,7 @@
 
 namespace MeetApi.Models;
 
-public class Chat
+public class Chat 
 {
     [Key] public int Id { get; set; }
 

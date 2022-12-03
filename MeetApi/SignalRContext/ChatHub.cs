@@ -2,7 +2,6 @@
 using System.Security.Claims;
 using MeetApi.Models;
 using Microsoft.AspNetCore.SignalR;
-using AppContext = MeetApi.Models.AppContext;
 
 namespace MeetApi.SignalRContext
 {

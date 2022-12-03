@@ -1,17 +1,24 @@
+using MeetApi.Data;
+using MeetApi.Interfaces.Services;
+using MeetApi.Middleware;
 using MeetApi.Models;
+using MeetApi.Services;
 using MeetApi.SignalRContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.FileProviders;
-using AppContext = MeetApi.Models.AppContext;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddDbContext<AppContext>(options =>
+builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql("Host=localhost;Port=5432;Database=postgres;Username=postgres;Password=123"));
 
 builder.Services.AddIdentity<User, IdentityRole>()
-    .AddEntityFrameworkStores<AppContext>();
+    .AddEntityFrameworkStores<AppDbContext>();
+builder.Services.AddTransient<IRegistrationService, RegistrationService>();
+builder.Services.AddTransient<IDataService, DataService>();
+builder.Services.AddTransient<IAuthentificationService, AuthentificationService>();
+builder.Services.AddTransient<IProfileService, ProfileService>();
 builder.Services.AddCors();
 builder.Services.AddControllers();
 builder.Services.AddSignalR();
@@ -41,12 +48,13 @@ var app = builder.Build();
 app.UseCors(appBuilder => appBuilder.AllowAnyOrigin());
 app.UseSwagger();
 app.UseSwaggerUI();
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 app.UseStaticFiles();
-app.UseStaticFiles(new StaticFileOptions() // обрабатывает запросы к каталогу wwwroot/html
+app.UseStaticFiles(new StaticFileOptions() 
 {
     FileProvider = new PhysicalFileProvider(
         Path.Combine(Directory.GetCurrentDirectory(), @"Pictures")),

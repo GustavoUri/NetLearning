@@ -1,6 +1,8 @@
-﻿namespace MeetApi.Models;
+﻿
 
-public class Filter
+namespace MeetApi.Models;
+
+public class Filter 
 {
     public int FirstAgeBorder { get; set; }
     public int SecondAgeBorder { get; set; }

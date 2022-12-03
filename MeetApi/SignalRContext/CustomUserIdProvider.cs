@@ -1,12 +1,13 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 using MeetApi;
-using AppContext = MeetApi.Models.AppContext;
+using MeetApi.Data;
+using MeetApi.Models;
 
 namespace MeetApi.SignalRContext;
 using System.Security.Claims;
 public class CustomUserIdProvider : IUserIdProvider
 {
-    private AppContext db = new AppContext();
+    private AppDbContext db = new AppDbContext();
     
     public virtual string? GetUserId(HubConnectionContext connection)
     {

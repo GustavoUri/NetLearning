@@ -1,6 +1,8 @@
-﻿namespace MeetApi.Models;
+﻿
 
-public class ChatInfo
+namespace MeetApi.Models;
+
+public class ChatToUser 
 {
     public string? PhotoPath { get; set; }
     public string? Name { get; set; }
