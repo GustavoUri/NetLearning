@@ -44,7 +44,7 @@ public static class ServiceExtentions
         {
             options.SwaggerDoc("v1", new OpenApiInfo
             {
-                Version = "v0.1",
+                Version = "v1.0",
                 Title = "MeetApiServer",
                 Description = "An Api for chatting and finding new friends",
                 Contact = new OpenApiContact
