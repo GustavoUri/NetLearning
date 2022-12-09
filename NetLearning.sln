@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetApi", "MeetApi\MeetApi.csproj", "{FB21763B-1E27-4127-B7AA-F3DB2A1059E0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetApiServer", "MeetApiServer\MeetApiServer.csproj", "{FB21763B-1E27-4127-B7AA-F3DB2A1059E0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetApiCore", "MeetApiCore\MeetApiCore.csproj", "{BA550A33-D518-4E5D-83E9-4EAE2617F226}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -12,5 +14,9 @@ Global
 		{FB21763B-1E27-4127-B7AA-F3DB2A1059E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB21763B-1E27-4127-B7AA-F3DB2A1059E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB21763B-1E27-4127-B7AA-F3DB2A1059E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA550A33-D518-4E5D-83E9-4EAE2617F226}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA550A33-D518-4E5D-83E9-4EAE2617F226}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA550A33-D518-4E5D-83E9-4EAE2617F226}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA550A33-D518-4E5D-83E9-4EAE2617F226}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

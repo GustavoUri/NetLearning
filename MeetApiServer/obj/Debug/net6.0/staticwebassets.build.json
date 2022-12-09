@@ -1,0 +1,19 @@
+{
+  "Version": 1,
+  "Hash": "9tTFLZc2UvsEcX1BS8qZAcM8k9xeQL31iBc2QV0vO4o=",
+  "Source": "MeetApiServer",
+  "BasePath": "_content/MeetApiServer",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "MeetApiServer\\wwwroot",
+      "Source": "MeetApiServer",
+      "ContentRoot": "C:\\Users\\amine\\RiderProjects\\NetLearning\\MeetApiServer\\wwwroot\\",
+      "BasePath": "_content/MeetApiServer",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": []
+}
