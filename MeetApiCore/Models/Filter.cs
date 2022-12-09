@@ -1,8 +1,6 @@
-﻿
+﻿namespace Entities.Models;
 
-namespace Entities.Models;
-
-public class Filter 
+public class Filter
 {
     public int FirstAgeBorder { get; set; }
     public int SecondAgeBorder { get; set; }

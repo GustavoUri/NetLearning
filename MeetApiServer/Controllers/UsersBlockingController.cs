@@ -5,18 +5,20 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MeetApi.Controllers;
+
 [ApiController]
 public class UsersBlockingController : Controller
 {
     private readonly UserManager<User> _userManager;
     private readonly IBlockedUsersDataService _blockedUsersDataService;
 
-    public UsersBlockingController(UserManager<User> userManager, 
+    public UsersBlockingController(UserManager<User> userManager,
         IBlockedUsersDataService blockedUsersDataService)
     {
         _userManager = userManager;
         _blockedUsersDataService = blockedUsersDataService;
     }
+
     /// <summary>
     /// Blocks other user, so he can't send messages to client,
     /// and client cannot too
@@ -41,6 +43,7 @@ public class UsersBlockingController : Controller
         _blockedUsersDataService.BlockUser(idForBlocking, user.Id);
         return Ok();
     }
+
     /// <summary>
     /// Unblocks other user
     /// </summary>
@@ -63,6 +66,7 @@ public class UsersBlockingController : Controller
         _blockedUsersDataService.UnblockUser(user.Id, idForUnblocking);
         return Ok();
     }
+
     /// <summary>
     /// Returns all user's blocked users
     /// </summary>
@@ -83,6 +87,4 @@ public class UsersBlockingController : Controller
         var result = _blockedUsersDataService.GetBlockedUsersIdOfUser(user.Id);
         return Json(result);
     }
-    
-    
 }

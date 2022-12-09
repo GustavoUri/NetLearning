@@ -11,6 +11,7 @@ public class PicturesDataService : IPicturesDataService
     {
         _usersDataService = usersDataService;
     }
+
     public async Task AddPictureAsync(IFormFile picture, string path)
     {
         await using var stream = new FileStream(path, FileMode.Create);
@@ -37,6 +38,5 @@ public class PicturesDataService : IPicturesDataService
             path = $"Pictures/Avatars/ClassicPhoto/classicPhoto.jpg";
         var result = await GetImageAsync(path);
         return result;
-        
     }
 }

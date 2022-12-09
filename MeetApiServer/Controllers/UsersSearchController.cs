@@ -17,6 +17,7 @@ public class UsersSearchController : Controller
         _userManager = userManager;
         _searchService = userSearchService;
     }
+
     /// <summary>
     /// Returns recommended users
     /// </summary>
@@ -37,6 +38,7 @@ public class UsersSearchController : Controller
         var result = _searchService.GetUsersIdByRecommendation(user.Id);
         return Json(result);
     }
+
     /// <summary>
     /// Returns filtered users
     /// </summary>

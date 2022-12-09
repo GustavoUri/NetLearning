@@ -20,6 +20,7 @@ public class MessagesController : Controller
         _sendingService = sendingService;
         _messagesDataService = messagesDataService;
     }
+
     /// <summary>
     /// Sends message to other user
     /// </summary>
@@ -48,6 +49,7 @@ public class MessagesController : Controller
         await _sendingService.SendMessage(messageToServer, sender.Id);
         return Ok();
     }
+
     /// <summary>
     /// Returns all client messages with other user
     /// </summary>

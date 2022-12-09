@@ -18,6 +18,7 @@ public class ChatsController : Controller
         _userManager = userManager;
         _chatsDataService = chatsDataService;
     }
+
     /// <summary>
     /// Returns all user ids with which there are messages
     /// </summary>

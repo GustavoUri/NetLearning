@@ -1,8 +1,6 @@
-﻿
+﻿namespace Entities.Models;
 
-namespace Entities.Models;
-
-public class Profile 
+public class Profile
 {
     public string? Id { get; set; }
     public string? FullName { get; set; }
@@ -11,5 +9,4 @@ public class Profile
     public string? Location { get; set; }
     public List<string>? Hobbies { get; set; }
     public string? Info { get; set; }
-    
 }

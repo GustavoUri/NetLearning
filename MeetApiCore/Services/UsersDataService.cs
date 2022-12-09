@@ -14,6 +14,7 @@ public class UsersDataService : IUsersDataService
     {
         _db = db;
     }
+
     public List<User> GetAllUsers()
     {
         var result = _db.Users

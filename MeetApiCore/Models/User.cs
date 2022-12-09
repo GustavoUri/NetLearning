@@ -12,5 +12,4 @@ public class User : IdentityUser
     public string? Info { get; set; }
     public List<User> BlockedUsers { get; set; } = new();
     public List<string> Friends { get; set; } = new();
-    
 }

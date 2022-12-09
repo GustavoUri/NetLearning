@@ -5,19 +5,16 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace MeetApi.Controllers
 {
-    /// <summary>
-    /// Used for registration and authorization
-    /// </summary>
     [ApiController]
     public class AccountController : Controller
     {
         private readonly IRegistrationService _registrationService;
         private readonly IAuthenticationService _authenticationService;
+
         public AccountController(IRegistrationService registrationService, IAuthenticationService authenticationService)
         {
             _registrationService = registrationService;
             _authenticationService = authenticationService;
-
         }
 
         /// <summary>
@@ -82,6 +79,7 @@ namespace MeetApi.Controllers
             await _authenticationService.LoginAsync(model);
             return Ok();
         }
+
         /// <summary>
         /// Logs out of the account
         /// </summary>

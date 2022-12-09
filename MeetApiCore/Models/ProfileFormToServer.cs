@@ -1,6 +1,6 @@
 ﻿namespace Entities.Models;
 
-public class ProfileFormToServer 
+public class ProfileFormToServer
 {
     public int Age { get; set; }
     public string? FullName { get; set; }

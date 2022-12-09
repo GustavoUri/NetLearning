@@ -8,5 +8,4 @@ public interface IPicturesDataService
     public Task UpdateUserProfilePictureAsync(IFormFile picture, string userId);
     public Task<Byte[]> GetImageAsync(string path);
     public Task<Byte[]> GetUserProfilePictureAsync(string userId);
-    
 }

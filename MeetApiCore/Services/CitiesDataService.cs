@@ -13,6 +13,7 @@ public class CitiesDataService : ICitiesDataService
     {
         _db = db;
     }
+
     public List<City> GetAllCities()
     {
         var result = _db.Cities.ToList();

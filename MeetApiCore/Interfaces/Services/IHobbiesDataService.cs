@@ -3,7 +3,7 @@
 namespace Entities.Interfaces.Services;
 
 public interface IHobbiesDataService
-{ 
+{
     public List<Hobby> GetAllHobbies();
     public Hobby GetHobbyById(int id);
     public Hobby GetHobbyByName(string name);

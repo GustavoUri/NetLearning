@@ -18,8 +18,10 @@ public class BadRequestException : Exception
         : base(message, innerException)
     {
     }
-    
+
     protected BadRequestException(
         SerializationInfo info,
-        StreamingContext context) : base(info, context) { }
+        StreamingContext context) : base(info, context)
+    {
+    }
 }

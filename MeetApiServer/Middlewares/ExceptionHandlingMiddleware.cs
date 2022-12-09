@@ -25,20 +25,20 @@ public class ExceptionHandlingMiddleware
             switch (error)
             {
                 case BadRequestException e:
-                
-                    await HandleExceptionAsync(httpContext, HttpStatusCode.BadRequest, e.Message, error.Message); 
+
+                    await HandleExceptionAsync(httpContext, HttpStatusCode.BadRequest, e.Message, error.Message);
                     break;
                 default:
-                    await HandleExceptionAsync(httpContext, HttpStatusCode.InternalServerError, "Непредвиденная ошибка на стороне сервера", error.Message);
+                    await HandleExceptionAsync(httpContext, HttpStatusCode.InternalServerError, "Server error",
+                        error.Message);
                     break;
             }
-            
         }
     }
 
-    public async Task HandleExceptionAsync(HttpContext context, HttpStatusCode statusCode, string message, string exceptionMessage)
+    public async Task HandleExceptionAsync(HttpContext context, HttpStatusCode statusCode, string message,
+        string exceptionMessage)
     {
-        // ReSharper disable once TemplateIsNotCompileTimeConstantProblem
         _logger.LogError(exceptionMessage);
         var responce = context.Response;
         responce.ContentType = "application/json";

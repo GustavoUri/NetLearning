@@ -8,11 +8,13 @@ public class BlockedUsersDataService : IBlockedUsersDataService
 {
     private readonly IUsersDataService _usersDataService;
     private readonly AppDbContext _db;
+
     public BlockedUsersDataService(IUsersDataService usersDataService, AppDbContext db)
     {
         _usersDataService = usersDataService;
         _db = db;
     }
+
     public List<string> GetBlockedUsersIdOfUser(string userId)
     {
         var user = _usersDataService.GetUserById(userId);

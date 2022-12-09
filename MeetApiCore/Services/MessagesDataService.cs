@@ -23,7 +23,8 @@ public class MessagesDataService : IMessagesDataService
         var secondUser = _usersDataService.GetUserById(secondUserId);
         var allMessages = GetAllMessages();
         var result = allMessages.Where(message => (message.Sender == firstUser && message.Receiver == secondUser) ||
-                                              (message.Sender == secondUser && message.Receiver == firstUser)).ToList();
+                                                  (message.Sender == secondUser && message.Receiver == firstUser))
+            .ToList();
 
         return result;
     }
@@ -76,5 +77,4 @@ public class MessagesDataService : IMessagesDataService
             .ToList();
         return result;
     }
-    
 }

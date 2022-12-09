@@ -20,6 +20,7 @@ public class ProfileController : Controller
         _profileService = profileService;
         _picturesDataService = picturesDataService;
     }
+
     /// <summary>
     /// Updates user's profile
     /// </summary>
@@ -53,6 +54,7 @@ public class ProfileController : Controller
         _profileService.UpdateProfile(user.Id, formToServer);
         return Ok();
     }
+
     /// <summary>
     /// Updates user's profile picture
     /// </summary>
@@ -75,6 +77,7 @@ public class ProfileController : Controller
         await _picturesDataService.UpdateUserProfilePictureAsync(picture, user.Id);
         return Ok();
     }
+
     /// <summary>
     /// Returns user's profile
     /// </summary>
@@ -118,6 +121,7 @@ public class ProfileController : Controller
         var user = await _userManager.FindByNameAsync(User.Identity?.Name);
         return Json(user.Id);
     }
+
     /// <summary>
     /// Returns profile picture of user
     /// </summary>

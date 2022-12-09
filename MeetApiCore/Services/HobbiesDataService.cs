@@ -13,6 +13,7 @@ public class HobbiesDataService : IHobbiesDataService
     {
         _db = db;
     }
+
     public List<Hobby> GetAllHobbies()
     {
         var result = _db.Hobbies.ToList();

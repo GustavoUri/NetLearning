@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 
 namespace MeetApi.Controllers;
+
 [ApiController]
 public class CitiesController : Controller
 {
@@ -11,6 +12,7 @@ public class CitiesController : Controller
     {
         _citiesDataService = citiesDataService;
     }
+
     /// <summary>
     /// Returns all cities
     /// </summary>
@@ -33,7 +35,7 @@ public class CitiesController : Controller
         var cities = _citiesDataService.GetAllCities();
         return Json(cities);
     }
-    
+
     /// <summary>
     /// Returns cities by beginning
     /// </summary>

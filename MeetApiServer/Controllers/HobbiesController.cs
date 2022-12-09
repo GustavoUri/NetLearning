@@ -11,6 +11,7 @@ public class HobbiesController : Controller
     {
         _hobbiesDataService = hobbiesDataService;
     }
+
     /// <summary>
     /// Returns all hobbies
     /// </summary>
@@ -33,6 +34,7 @@ public class HobbiesController : Controller
         var hobbies = _hobbiesDataService.GetAllHobbies();
         return Json(hobbies);
     }
+
     /// <summary>
     /// Returns hobby by beginning
     /// </summary>

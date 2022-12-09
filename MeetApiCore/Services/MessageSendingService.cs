@@ -4,6 +4,7 @@ using Entities.Interfaces.Services;
 using Entities.Models;
 using Entities.SignalRContext;
 using Microsoft.AspNetCore.SignalR;
+
 namespace Entities.Services;
 
 public class MessageSendingService : IMessageSendingService
@@ -12,7 +13,9 @@ public class MessageSendingService : IMessageSendingService
     private readonly IUsersDataService _usersDataService;
     private readonly IMessagesDataService _messagesDataService;
     private readonly IChatsDataService _chatsDataService;
-    public MessageSendingService(IHubContext<ChatHub> hubContext, IUsersDataService usersDataService, IMessagesDataService messagesDataService,
+
+    public MessageSendingService(IHubContext<ChatHub> hubContext, IUsersDataService usersDataService,
+        IMessagesDataService messagesDataService,
         IChatsDataService chatsDataService)
     {
         _hubContext = hubContext;
@@ -20,6 +23,7 @@ public class MessageSendingService : IMessageSendingService
         _messagesDataService = messagesDataService;
         _chatsDataService = chatsDataService;
     }
+
     public async Task SendMessage(MessageToServer messageToServer, string senderId)
     {
         var sender = _usersDataService.GetUserById(senderId);
@@ -28,6 +32,7 @@ public class MessageSendingService : IMessageSendingService
         {
             throw new BadRequestException("User is blocked by other user");
         }
+
         var messageForSending = new MessageToClient()
         {
             IsMyMessage = false,

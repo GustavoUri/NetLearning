@@ -14,13 +14,11 @@ namespace Entities.Data
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
-            //Database.EnsureDeleted();
             Database.EnsureCreated();
         }
 
         public AppDbContext()
         {
-            //Database.EnsureDeleted();
             Database.EnsureCreated();
         }
 
@@ -28,7 +26,5 @@ namespace Entities.Data
         {
             optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=postgres;Username=postgres;Password=123");
         }
-
-        
     }
 }

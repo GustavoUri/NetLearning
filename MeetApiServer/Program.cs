@@ -14,14 +14,14 @@ var app = builder.Build();
 
 app.UseCors(appBuilder => appBuilder.AllowAnyOrigin());
 app.UseSwagger();
-app.UseSwaggerUI(); 
+app.UseSwaggerUI();
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 app.UseStaticFiles();
-app.UseStaticFiles(new StaticFileOptions() 
+app.UseStaticFiles(new StaticFileOptions()
 {
     FileProvider = new PhysicalFileProvider(
         Path.Combine(Directory.GetCurrentDirectory(), @"Pictures")),

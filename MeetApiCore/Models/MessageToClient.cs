@@ -1,8 +1,6 @@
-﻿
+﻿namespace Entities.Models;
 
-namespace Entities.Models;
-
-public class MessageToClient 
+public class MessageToClient
 {
     public string SenderId { get; set; }
     public string SendingTime { get; set; }
